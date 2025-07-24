@@ -9,6 +9,7 @@ items.forEach(item => {
     li.textContent = item;
     li.addEventListener("click", function () {
         this.remove();
+
     });
     listaUL.appendChild(li);
 });
@@ -49,6 +50,12 @@ inputfield.addEventListener("keydown",(event) =>{
         
         nuevoitem.addEventListener("click", function() {
             this.remove();
+            const texto = this.textContent;
+            const index = items.indexOf(texto);
+            if(index !== 1){
+                items.splice(index,1);
+            localStorage.setItem("items",JSON.stringify(items));
+            }
         });
         listaUL.appendChild(nuevoitem);
         inputfield.value = "";
