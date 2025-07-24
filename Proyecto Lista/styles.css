@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(imagenes/fondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 96vh;
+}
+
+.Textoh1{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.inputlabel{
+    font-size: 20px;
+    margin-left: 100px;
+    background-color: transparent;
+}
+
+.inputlabel input{
+    background-color: transparent;
+}
+
+
+.botonadd{
+    color:black;
+    font-size: 15px;
+    align-items: center;
+}
+
+.botonadd:hover{
+    cursor: pointer;
+}
+
+.itemslist{
+    margin-left: 100px;
+}
+
+.itemslist{
+    font-size: 30px;
+}

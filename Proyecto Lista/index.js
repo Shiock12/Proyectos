@@ -1,17 +1,15 @@
 const button = document.getElementById("addItem");
 let items = JSON.parse(localStorage.getItem("items")) || [];
+const inputfield = document.getElementById("items");
 
 const listaUL = document.getElementById("lista");
 
 items.forEach(item => {
     let li = document.createElement("li");
     li.textContent = item;
-
     li.addEventListener("click", function () {
         this.remove();
-        // (Opcional) también podrías sacarlo de localStorage
     });
-
     listaUL.appendChild(li);
 });
 
@@ -33,6 +31,14 @@ button.addEventListener("click", () =>{
         listaUL.appendChild(nuevoitem)
     }
 });
+
+inputfield.addEventListener("keydown",(event) =>{
+    if(event.key === "Enter"){
+        button.click();
+        return;
+    }
+});
+
 
 
 
