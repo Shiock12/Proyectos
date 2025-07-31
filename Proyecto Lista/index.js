@@ -1,6 +1,7 @@
-const button = document.getElementById("addItem");
+const buttondelete = document.getElementById("buttondelete");
 let items = JSON.parse(localStorage.getItem("items")) || [];
 const inputfield = document.getElementById("items");
+const botonadd = document.getElementById("botonadd")
 
 const listaUL = document.getElementById("lista");
 
@@ -8,8 +9,7 @@ items.forEach(item => {
     let li = document.createElement("li");
     li.textContent = item;
     li.addEventListener("click", function () {
-        this.remove();
-
+        this.classList.toggle("tachado");
     });
     listaUL.appendChild(li);
 });
@@ -19,7 +19,7 @@ inputfield.addEventListener("keydown",(event) =>{
         const input = document.getElementById("items").value; // Capturo el valor
     const listaUL = document.getElementById("lista");
 
-    if(input === ""){
+    if(input.trim() ===""){
         alert("No ingresaste ningun elemento");
     }else{
         let nuevoitem = document.createElement("li");
@@ -31,7 +31,7 @@ inputfield.addEventListener("keydown",(event) =>{
             this.remove();
             const texto = this.textContent;
             const index = items.indexOf(texto);
-            if(index !== 1){
+            if(index !== -1){
                 items.splice(index,1);
             localStorage.setItem("items",JSON.stringify(items));
             }
@@ -39,9 +39,43 @@ inputfield.addEventListener("keydown",(event) =>{
         listaUL.appendChild(nuevoitem);
         inputfield.value = "";
     }
-        button.click();
     }
 });
+
+botonadd.addEventListener("click",() =>{
+        const input = document.getElementById("items").value; // Capturo el valor
+    const listaUL = document.getElementById("lista");
+
+    if(input.trim() ===""){
+        alert("No ingresaste ningun elemento");
+    }else{
+        let nuevoitem = document.createElement("li");
+        nuevoitem.textContent = input;
+        items.push(input);
+        localStorage.setItem("items",JSON.stringify(items));
+        
+        nuevoitem.addEventListener("click", function() {
+            this.remove();
+            const texto = this.textContent;
+            const index = items.indexOf(texto);
+            if(index !== -1){
+                items.splice(index,1);
+            localStorage.setItem("items",JSON.stringify(items));
+            }
+        });
+        listaUL.appendChild(nuevoitem);
+        inputfield.value = "";
+    }
+});
+
+buttondelete.addEventListener("click", () =>{
+    items = [];
+    localStorage.removeItem("items");
+    listaUL.innerHTML = "";
+})
+
+
+
 
 
 

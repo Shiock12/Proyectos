@@ -21,21 +21,34 @@ body{
     background-color: transparent;
 }
 
-
-.botonadd{
-    color:black;
-    font-size: 15px;
-    align-items: center;
-}
-
-.botonadd:hover{
-    cursor: pointer;
-}
-
 .itemslist{
     margin-left: 100px;
 }
 
 .itemslist{
     font-size: 30px;
+}
+
+.botones{
+    margin-left: 150px;
+}
+
+.boton-delete{
+    background-color: red;
+    color: black;
+    border: 2px solid black;
+    font-size: 1em;
+}
+
+.boton-add{
+    background-color: lightgreen;
+    color: black;
+    border: 2px solid black;
+    font-size: 1em;
+}
+
+
+.tachado{
+    text-decoration: line-through;
+    color: black;
 }
