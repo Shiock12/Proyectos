@@ -34,7 +34,7 @@ body{
 }
 
 .boton-delete{
-    background-color: red;
+    background-color: lightcoral;
     color: black;
     border: 2px solid black;
     font-size: 1em;
