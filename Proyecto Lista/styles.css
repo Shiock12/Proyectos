@@ -53,9 +53,3 @@ body{
     color: black;
 }
 
-
-@media  (max-width: 480px){
-    body{
-        text-align: left;
-    }
-}
