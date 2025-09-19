@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(imagenes/fondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 96vh;
+}
+
+.Textoh1{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.inputlabel{
+    font-size: 20px;
+    margin-left: 100px;
+    background-color: transparent;
+}
+
+.inputlabel input{
+    background-color: transparent;
+}
+
+.itemslist{
+    margin-left: 100px;
+}
+
+.itemslist{
+    font-size: 30px;
+}
+
+.botones{
+    margin-left: 150px;
+}
+
+.boton-delete{
+    background-color: lightcoral;
+    color: black;
+    border: 2px solid black;
+    font-size: 1em;
+}
+
+.boton-add{
+    background-color: lightgreen;
+    color: black;
+    border: 2px solid black;
+    font-size: 1em;
+}
+
+
+.tachado{
+    text-decoration: line-through;
+    color: black;
+}
+

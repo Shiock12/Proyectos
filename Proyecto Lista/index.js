@@ -1,38 +1,64 @@
-const button = document.getElementById("addItem");
-let items = JSON.parse(localStorage.getItem("items")) || [];
-
+const buttondelete = document.getElementById("buttondelete");
+const inputfield = document.getElementById("items");
+const botonadd = document.getElementById("botonadd");
 const listaUL = document.getElementById("lista");
 
-items.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = item;
+let items = JSON.parse(localStorage.getItem("items")) || [];
 
-    li.addEventListener("click", function () {
-        this.remove();
-        // (Opcional) también podrías sacarlo de localStorage
-    });
 
-    listaUL.appendChild(li);
-});
+function configurarLi(li, texto) {
+  
+  li.addEventListener("click", function () {
+    this.classList.toggle("tachado");
+  });
 
-button.addEventListener("click", () =>{
-    const input = document.getElementById("items").value; // Capturo el valor
-    const listaUL = document.getElementById("lista");
-
-    if(input === ""){
-        alert("No ingresaste ningun elemento");
-    }else{
-        let nuevoitem = document.createElement("li");
-        nuevoitem.textContent = input;
-        items.push(input);
-        localStorage.setItem("items",JSON.stringify(items));
-        
-        nuevoitem.addEventListener("click", function() {
-            this.remove();
-        });
-        listaUL.appendChild(nuevoitem)
+  li.addEventListener("dblclick", function () {
+    this.remove();
+    const index = items.indexOf(texto);
+    if (index !== -1) {
+      items.splice(index, 1);
+      localStorage.setItem("items", JSON.stringify(items));
     }
+  });
+}
+
+
+items.forEach(item => {
+  const li = document.createElement("li");
+  li.textContent = item;
+  configurarLi(li, item);
+  listaUL.appendChild(li);
+});
+
+function agregarItem() {
+  const input = inputfield.value.trim();
+  if (input === "") {
+    alert("No ingresaste ningún elemento");
+    return;
+  }
+
+  const nuevoitem = document.createElement("li");
+  nuevoitem.textContent = input;
+  items.push(input);
+  localStorage.setItem("items", JSON.stringify(items));
+  configurarLi(nuevoitem, input);
+  listaUL.appendChild(nuevoitem);
+  inputfield.value = "";
+}
+
+inputfield.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    agregarItem();
+  }
+});
+
+botonadd.addEventListener("click", () => {
+  agregarItem();
 });
 
 
-
+buttondelete.addEventListener("click", () => {
+  items = [];
+  localStorage.removeItem("items");
+  listaUL.innerHTML = "";
+});
