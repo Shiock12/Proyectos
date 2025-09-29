@@ -1,61 +1,213 @@
+/* =========
+   Paleta y base
+   ========= */
+:root{
+  --bg: #eef2ff;            /* fondo */
+  --surface: #ffffff;       /* tarjetas/inputs */
+  --text: #0f172a;          /* texto principal (slate-900) */
+  --muted: #475569;         /* texto secundario */
+  --primary: #3b82f6;       /* azul */
+  --primary-700: #2563eb;
+  --accent-green: #22c55e;  /* ok/add */
+  --accent-green-700: #16a34a;
+  --accent-red: #f97316;    /* delete (coral-anaranjado) */
+  --accent-red-700: #ea580c;
+  --ring: 0 0 0 4px rgba(59,130,246,.2);
+  --radius: 12px;
+}
+
+/* Modo oscuro opcional si el SO lo pide */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b1220;
+    --surface: #0f172a;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #60a5fa;
+    --primary-700: #3b82f6;
+  }
+}
+
+/* =========
+   Reset suave
+   ========= */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
 body{
-    margin: 0;
-    padding: 0;
-    background-image: url(imagenes/fondo2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 96vh;
+  margin: 0;
+  padding: 0;
+  min-height: 100svh;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(59,130,246,.15), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(34,197,94,.10), transparent 60%),
+    var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  line-height: 1.5;
 }
 
+/* Contenedor fluido (usa si podés envolver tu contenido) */
+.container{
+  max-width: 960px;
+  margin-inline: auto;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+/* =========
+   Títulos y textos
+   ========= */
 .Textoh1{
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  margin: 0 0 1rem 0;
+  color: var(--text);
 }
+
+/* =========
+   Etiquetas e inputs
+   ========= */
 .inputlabel{
-    font-size: 20px;
-    margin-left: 100px;
-    background-color: transparent;
+  /* en mobile apila; en desktop alinea en fila */
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  background-color: transparent;
+  font-size: clamp(1rem, .9rem + .3vw, 1.125rem);
+  margin: 0 0 1rem 0;       /* reemplaza margin-left fijo */
 }
 
-.inputlabel input{
-    background-color: transparent;
+.inputlabel label{
+  color: var(--muted);
 }
 
+.inputlabel input,
+.inputlabel select,
+.inputlabel textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(148,163,184,.35); /* slate-400/35 */
+  background-color: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .02s ease;
+}
+
+.inputlabel input:focus,
+.inputlabel select:focus,
+.inputlabel textarea:focus{
+  border-color: var(--primary);
+  box-shadow: var(--ring);
+}
+
+/* =========
+   Listas de items
+   ========= */
 .itemslist{
-    margin-left: 100px;
+  margin: 0;                 /* quitamos margen fijo a la izquierda */
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  font-size: clamp(1rem, .7rem + 1vw, 1.25rem);
 }
 
-.itemslist{
-    font-size: 30px;
+.itemslist li{
+  background: var(--surface);
+  border: 1px solid rgba(148,163,184,.25);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
+/* Tachado para completados */
+.tachado{
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* =========
+   Botones
+   ========= */
 .botones{
-    margin-left: 150px;
+  /* layout responsivo de botones */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0 0 0;       /* sin margin-left fijo */
 }
 
+.boton-add,
 .boton-delete{
-    background-color: lightcoral;
-    color: black;
-    border: 2px solid black;
-    font-size: 1em;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) - 4px);
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .02s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .boton-add{
-    background-color: lightgreen;
-    color: black;
-    border: 2px solid black;
-    font-size: 1em;
+  background-color: var(--accent-green);
+  color: #001b0a;
+  border-color: rgba(22,163,74,.25);
 }
 
+.boton-add:hover{ background-color: var(--accent-green-700); color: #f0fdf4; }
+.boton-add:active{ transform: translateY(1px); }
+.boton-add:focus-visible{ box-shadow: var(--ring); }
 
-.tachado{
-    text-decoration: line-through;
-    color: black;
+.boton-delete{
+  background-color: var(--accent-red);
+  color: #2b1100;
+  border-color: rgba(234,88,12,.3);
 }
 
+.boton-delete:hover{ background-color: var(--accent-red-700); color: #fff7ed; }
+.boton-delete:active{ transform: translateY(1px); }
+.boton-delete:focus-visible{ box-shadow: var(--ring); }
 
-@media  (max-width: 480px){
-    body{
-        text-align: left;
-    }
+/* Botón alternativo primario (por si lo necesitás) */
+.button-primary{
+  background: var(--primary);
+  color: white;
+  border: 1px solid var(--primary-700);
+}
+.button-primary:hover{ background: var(--primary-700); }
+
+/* =========
+   Responsivo
+   ========= */
+
+/* ≥768px: alinear label e input en fila */
+@media (min-width: 768px){
+  .inputlabel{
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* ≥1024px: agrandar contenedor */
+@media (min-width: 1024px){
+  .container{ max-width: 1100px; }
+}
+
+/* ≤640px: paddings más compactos y tipografías fluidas ya cubren */
+@media (max-width: 640px){
+  body{ text-align: left; }
+  .itemslist li{ padding: 10px 12px; }
+}
+
+/* Accesibilidad: reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; }
 }

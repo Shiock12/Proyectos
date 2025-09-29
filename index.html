@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de compras</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="Proyecto Lista/styles.css">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lista de compras</title>
+  <!-- Usá solo uno. Si tu CSS final se llama styles.css, dejá este: -->
+  <link rel="stylesheet" href="./Proyecto Lista/styles.css">
 </head>
 <body>
-    <h1 class="Textoh1">Shopping List</h1>
-    <h1>Hola, este es un servicio para ayudarte mejor en tus compras!</h1>
-    <section class="inputlabel">
-            <label for="">Empeza a agregar tus items</label>
-                <input type="text" name="" id="items">
+  <main class="container">
+    <header>
+      <h1 class="Textoh1">Shopping List</h1>
+      <p style="margin: 0 0 1rem 0; color: var(--muted); font-size: clamp(1rem, .95rem + .3vw, 1.125rem);">
+        Hola, este es un servicio para ayudarte mejor en tus compras.
+      </p>
+    </header>
+
+    <!-- Convertimos a form para que Enter agregue el ítem -->
+    <form class="inputlabel" id="add-form" autocomplete="off">
+      <label for="items">Empezá a agregar tus ítems</label>
+      <input
+        type="text"
+        id="items"
+        name="items"
+        placeholder="Ej: leche descremada"
+        aria-label="Campo para escribir ítems de compra"
+      />
+    </form>
+
+    <section aria-labelledby="lista-title" style="margin-top: 8px;">
+      <h2 id="lista-title" class="sr-only" style="position:absolute;left:-9999px;">Lista</h2>
+      <ul id="lista" class="itemslist" aria-live="polite"></ul>
     </section>
-    <section class="itemslist">
-        <ul id="lista"></ul>
-    </section>
-    <div class="botones">
-        <button id="botonadd" class="boton-add">Agregar item</button>
-        <button id="buttondelete" class="boton-delete">Borrar todo</button>
+
+    <div class="botones" role="group" aria-label="Acciones de lista">
+      <button id="botonadd" class="boton-add" type="button">Agregar item</button>
+      <button id="buttondelete" class="boton-delete" type="button">Borrar todo</button>
     </div>
-    <script src="Proyecto Lista/index.js"></script>
+  </main>
+
+  <!-- Tu JS -->
+  <script src="Proyecto Lista/index.js"></script>
 </body>
 </html>
